@@ -53,10 +53,17 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
                                          fit_region_min=fit_region_min, fit_region_max=fit_region_max, func='legendre',
                                          model='exp', mask_lyman_a=mask_lyman_a, debug_init=debug, debug=debug, show=show)
 
-def stack_multinight(sci_path, spec1dfiles,fileroot, objids=None, wave_method='log10', ex_value='OPT',
-                     sn_smooth_npix=None, debug=False, show=False):
+def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+                     scale_method='poly', const_weights=False, sn_smooth_npix=None, debug=False, show=False):
 
-    #spec1dfiles = np.genfromtxt(spec1dlist,dtype='str')
+    if spec1dfiles is None:
+        #spec1dfiles = np.genfromtxt(spec1dlist,dtype='str')
+        scifiles_all = os.listdir(sci_path)
+        spec1dfiles = []
+        for i in range(len(scifiles_all)):
+            if ('tellcorr' in scifiles_all[i]) and (fileroot in scifiles_all[i]):
+                spec1dfiles.append(scifiles_all[i])
+
     nfiles = len(spec1dfiles)
     fnames = []
     nspec_array = []
@@ -91,17 +98,19 @@ def stack_multinight(sci_path, spec1dfiles,fileroot, objids=None, wave_method='l
         msgs.info('Using a sn_smooth_npix={:d} to decide how to scale and weight your spectra'.format(sn_smooth_npix))
 
     wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.combspec(waves, fluxes, ivars, masks, sn_smooth_npix,
-             wave_method=wave_method, debug=debug, show=show)
+             wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,
+             debug=debug, show=show, debug_scale=debug, show_scale=show)
 
-    if fileroot is not None:
-        if len(fileroot.split('.')) == 1:
-            fileroot = fileroot + '.fits'
-        elif fileroot.split('.')[-1] != 'fits':
-            fileroot = fileroot + '.fits'
-        outfile = os.path.join(sci_path, fileroot)
+    if outroot is None:
+        outroot = fileroot.copy()
+    if len(outroot.split('.')) == 1:
+        outroot = outroot + '.fits'
+    elif outroot.split('.')[-1] != 'fits':
+        outroot = outroot + '.fits'
+    outfile = os.path.join(sci_path, outroot)
 
-        save.save_coadd1d_to_fits(outfile, wave_stack, flux_stack, ivar_stack, mask_stack, header=header,
-                                  ex_value=ex_value, overwrite=True)
+    save.save_coadd1d_to_fits(outfile, wave_stack, flux_stack, ivar_stack, mask_stack, header=header,
+                              ex_value=ex_value, overwrite=True)
 
 def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', instrument=None,
               star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
