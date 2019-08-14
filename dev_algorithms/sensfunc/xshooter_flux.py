@@ -344,6 +344,22 @@ outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J247', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=True, show=True)
 
+## J2132+1217
+qsoname = 'J2132+1217'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+stdfiles = ['spec1d_XSHOO.2016-10-03T23:21:52.104-Feige110_XShooter_VIS_2016Oct03T232152.104.fits']#,
+            #'spec1d_XSHOO.2016-10-04T23:20:12.386-LTT7987_XShooter_VIS_2016Oct04T232012.386.fits',
+            #'spec1d_XSHOO.2016-10-08T01:46:37.154-Feige110_XShooter_VIS_2016Oct08T014637.154.fits',
+            #'spec1d_XSHOO.2016-10-21T08:43:57.556-LTT3218_XShooter_VIS_2016Oct21T084357.556.fits']
+z_qso = 6.58
+tell_method = 'qso'
+fileroots = ['J323p12_XShooter_VIS']
+for ii in range(len(fileroots)):
+    fileroot = fileroots[ii]
+    stdfile = stdfiles[ii]
+    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+
 
 ## J2211-3206
 qsoname = 'J2211-3206'
