@@ -1,4 +1,4 @@
-from dev_flux_tell import flux_tell, stack_multinight
+from dev_flux_tell import flux_tell, stack_multinight, merge_vis_nir
 
 ### sensfunction for VIS arm
 instrument = 'XSHOOTER_VIS'
@@ -29,6 +29,15 @@ fileroots = ['J0020-3653_XShooter_VIS_2017']
 #    stdfile = stdfiles[ii]
 #    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
 #              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+
+# merge VIS and NIR
+spec1dvis = 'J0020-3653_XShooter_VIS_2017_tellcorr_scale.fits'
+spec1dnir = 'J0020-3653_XShooter_NIR_2017_tellcorr_scale.fits'
+qsoname = 'J0020-3653'
+outfile = qsoname+'_XShooter.fits'
+sci_path = '/Users/feige/Dropbox/QSO_DATA/DP_Spec/J0020-3653'
+stack_region = [10150.0,10200.0]
+#merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region)
 
 ## J0109-3047
 qsoname = 'J0109-3047'
