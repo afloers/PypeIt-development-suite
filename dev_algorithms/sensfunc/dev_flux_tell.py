@@ -135,7 +135,8 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
                              mask_lyman_a=mask_lyman_a, show=disp, debug=debug)
 
 def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
-                     scale_method='poly', const_weights=False, sn_smooth_npix=None, debug=False, show=False):
+                     scale_method='poly', const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
+                     debug=False, show=False):
 
     if spec1dfiles is None:
         #spec1dfiles = np.genfromtxt(spec1dlist,dtype='str')
@@ -179,7 +180,7 @@ def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=N
         msgs.info('Using a sn_smooth_npix={:d} to decide how to scale and weight your spectra'.format(sn_smooth_npix))
 
     wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.combspec(waves, fluxes, ivars, masks, sn_smooth_npix,
-             wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,
+             wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,ref_percentile=ref_percentile,
              debug=debug, show=show, debug_scale=debug, show_scale=show)
 
     if outroot is None:
