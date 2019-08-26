@@ -19,14 +19,15 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
 
     if (instrument=='GNIRS') or (instrument=='NIRES'):
         telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
-    elif instrument == 'XSHOOTER_VIS':
+    elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
         telgridfile = os.path.join(os.getenv('HOME'),
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
     elif instrument == 'XSHOOTER_NIR':
         telgridfile = os.path.join(os.getenv('HOME'),
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
     else:
-        msgs.error('Telluric Grid TBD.')
+        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        msgs.warn('No telluric grid is found. Using MaunaKea!')
 
     # run telluric.sensfunc_telluric to get the sensfile
     TelSens = telluric.sensfunc_telluric(std1dfile, telgridfile, sensfile, star_type=star_type, star_mag=star_mag,
@@ -39,8 +40,12 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
                          show=True, debug=False):
 
     # output names
-    telloutfile = stackfilename.replace('.fits','_tellmodel.fits')
-    outfile = stackfilename.replace('.fits','_tellcorr.fits')
+    if tell_method == 'poly':
+        telloutfile = stackfilename.replace('.fits', '_polytellmodel.fits')
+        outfile = stackfilename.replace('.fits', '_polytellcorr.fits')
+    else:
+        telloutfile = stackfilename.replace('.fits','_tellmodel.fits')
+        outfile = stackfilename.replace('.fits','_tellcorr.fits')
 
     if tell_method=='qso':
         pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
@@ -53,18 +58,40 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
                                          fit_region_min=fit_region_min, fit_region_max=fit_region_max, func='legendre',
                                          model='exp', mask_lyman_a=mask_lyman_a, debug_init=debug, debug=debug, show=show)
 
-def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', instrument=None,
-              star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
-              objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9850.0],
+def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
+              instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
+              objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
+              scale_method=None, hand_scale=None,
               mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
 
+    if std_path is None:
+        std_path = sci_path
     if fileroot is None:
         fileroot = 'spec1d_flux_tell.fits'
 
+    std1dfile = os.path.join(std_path, stdfile)
+    header = fits.getheader(std1dfile, 0)
+    pypeline = header['PYPELINE']
+
+    if spec1dfiles is None:
+        scifiles_all = os.listdir(sci_path)
+        spec1dfiles = []
+        for i in range(len(scifiles_all)):
+            if ('spec1d' in scifiles_all[i]) and (fileroot in scifiles_all[i]):
+                spec1dfiles.append(scifiles_all[i])
+
+    nfiles = len(spec1dfiles)
+    fnames = []
+    for ifile in range(nfiles):
+        fnames.append(os.path.join(sci_path, spec1dfiles[ifile]))
+    if objids is None:
+        objids = ['OBJ0001'] * nfiles
+    elif len(objids) != nfiles:
+        msgs.error('The length of objids should be exactly the same with the number of spec1d files.')
+    #fnames = np.sort(fnames)
+
     ### get sensfunc
-    std1dfile = os.path.join(sci_path, stdfile)
     if (star_ra is None) and (star_dec is None) and (star_mag is None) and (star_type is None):
-        header = fits.getheader(std1dfile,0)
         star_ra, star_dec = header['RA'], header['DEC']
 
     if do_sens:
@@ -77,32 +104,18 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
             telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
-        elif instrument == 'XSHOOTER_VIS':
+        elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
             telgridfile = os.path.join(os.getenv('HOME'),
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
         elif instrument == 'XSHOOTER_NIR':
             telgridfile = os.path.join(os.getenv('HOME'),
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
         else:
-            msgs.error('Telluric Grid TBD.')
+            telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            msgs.warn('No telluric grid is found. Using MaunaKea!')
 
     ### Apply the sensfunc to all spectra (only sensfunc but not tellluric)
     if do_flux:
-        scifiles_all = os.listdir(sci_path)
-        spec1dfiles = []
-        for i in range(len(scifiles_all)):
-            if ('spec1d' in scifiles_all[i]) and (fileroot in scifiles_all[i]):
-                spec1dfiles.append(scifiles_all[i])
-
-        nfiles = len(spec1dfiles)
-        fnames = []
-        for ifile in range(nfiles):
-            fnames.append(os.path.join(sci_path, spec1dfiles[ifile]))
-        if objids is None:
-            objids = ['OBJ0001']*nfiles
-        elif len(objids) != nfiles:
-            msgs.error('The length of objids should be exactly the same with the number of spec1d files.')
-
         apply_sensfunc(fnames, sensfile, extinct_correct=False, tell_correct=False, debug=debug, show=disp)
         # fnames_flux = [f.replace('.fits', '_flux.fits') for f in fnames]
     else:
@@ -114,15 +127,21 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
     elif fileroot.split('.')[-1] != 'fits':
         fileroot = fileroot + '.fits'
     stackfile = os.path.join(sci_path, fileroot)
-
     if do_stack:
         ## Let's coadd all the fluxed spectra
         # you should get a coadded spectrum named as '{:}_stack.fits'.format(qsoname)
         #                a straight merge of individual order stacked spectra named as '{:}_merge.fits'.format(qsoname)
         #                a individual order stacked spectra (multi-extension) named as '{:}_order.fits'.format(qsoname)
-
-        wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp, sensfile=sensfile,
-                                                                              ex_value=ex_value, outfile=stackfile, debug=debug)
+        if pypeline == 'Echelle':
+            wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp,
+                                                                sensfile=sensfile, ex_value=ex_value, outfile=stackfile,
+                                                                scale_method=scale_method, hand_scale=hand_scale,
+                                                                debug=debug)
+        else:
+            wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.multi_combspec(fnames, objids, show=disp,
+                                                                ex_value=ex_value, outfile=stackfile,
+                                                                scale_method=scale_method, hand_scale=hand_scale,
+                                                                debug=debug, debug_scale=debug)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
     else:
