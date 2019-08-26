@@ -91,7 +91,7 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
         scifiles_all = os.listdir(sci_path)
         spec1dfiles = []
         for i in range(len(scifiles_all)):
-            if ('spec1d' in scifiles_all[i]) and (fileroot in scifiles_all[i]):
+            if ('spec1d' in scifiles_all[i]) and (fileroot in scifiles_all[i]) and ('sens' not in scifiles_all[i]):
                 spec1dfiles.append(scifiles_all[i])
 
         nfiles = len(spec1dfiles)

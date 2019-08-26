@@ -181,7 +181,9 @@ stdfiles = ['spec1d_XSHOO.2015-10-24T23:39:54.474-LTT7987_XShooter_VIS_2015Oct24
 ## J2211-6320
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/J2211-6320/VIS/Science'
 stdfiles = ['spec1d_XSHOO.2019-06-08T23:19:27.375-LTT3218_XShooter_VIS_2019Jun08T231927.375.fits',
-            'spec1d_XSHOO.2019-06-08T23:25:17.455-LTT3218_XShooter_VIS_2019Jun08T232517.455.fits']
+            'spec1d_XSHOO.2019-06-08T23:25:17.455-LTT3218_XShooter_VIS_2019Jun08T232517.455.fits',
+            'spec1d_XSHOO.2019-08-22T06:02:20.203-Feige110_XShooter_VIS_2019Aug22T060220.203.fits',
+            'spec1d_XSHOO.2019-08-22T06:07:20.738-Feige110_XShooter_VIS_2019Aug22T060720.739.fits']
 #for ii in range(len(stdfiles)):
 #    stdfile = stdfiles[ii]
 #    flux_tell(sci_path, stdfile, instrument=instrument, do_sens=True, do_flux=False, do_stack=False, do_tell=False,
