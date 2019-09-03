@@ -61,7 +61,7 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
 def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
-              scale_method=None, hand_scale=None,
+              scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
               mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
 
     if std_path is None:
@@ -137,12 +137,14 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp,
                                                                 sensfile=sensfile, ex_value=ex_value, outfile=stackfile,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
-                                                                debug=debug)
+                                                                wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
+                                                                const_weights=const_weights, debug=debug)
         else:
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.multi_combspec(fnames, objids, show=disp,
                                                                 ex_value=ex_value, outfile=stackfile,
+                                                                wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
-                                                                debug=debug, debug_scale=debug)
+                                                                const_weights=const_weights, debug=debug, debug_scale=debug)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
     else:
