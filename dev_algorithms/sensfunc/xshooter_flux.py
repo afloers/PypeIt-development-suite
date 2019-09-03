@@ -171,8 +171,16 @@ fileroots = ['J0305m3150_XShooter_VIS_2016Oct21','J0305m3150_XShooter_VIS_2016No
 #    stdfile = stdfiles[ii]
 #    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
 #              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=True, debug=False)
-outroot = qsoname+'_'+instrument
+#outroot = qsoname+'_'+instrument+'_ALL'
 #stack_multinight(sci_path, 'J0305m3150', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+#                 sn_smooth_npix=None, debug=False, show=True)
+spec1dfiles = ['J0305m3150_XShooter_VIS_2016Nov02_tellcorr.fits',
+               'J0305m3150_XShooter_VIS_2016Nov06_tellcorr.fits',
+               'J0305m3150_XShooter_VIS_2016Nov20_tellcorr.fits',
+               'J0305m3150_XShooter_VIS_2016Nov28_tellcorr.fits',
+               'J0305m3150_XShooter_VIS_2016Oct21_tellcorr.fits']
+#outroot = qsoname+'_'+instrument
+#stack_multinight(sci_path, 'J0305m3150', outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=False, show=True)
 
 ## J0439+1634
