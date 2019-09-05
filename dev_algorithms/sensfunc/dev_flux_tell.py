@@ -10,7 +10,7 @@ from pypeit.core import coadd1d
 from pypeit import msgs
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
-                       star_dec=None, mask_abs_lines=True, disp=True, debug=False):
+                       star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
     # sensfunction output file name
     sensfile = std1dfile.replace('.fits','.sens.fits')
 
@@ -32,7 +32,7 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     # run telluric.sensfunc_telluric to get the sensfile
     TelSens = telluric.sensfunc_telluric(std1dfile, telgridfile, sensfile, star_type=star_type, star_mag=star_mag,
                                          star_ra=star_ra, star_dec=star_dec, mask_abs_lines=mask_abs_lines,
-                                         disp=disp, debug=debug)
+                                         polyorder=sens_polyorder, disp=disp, debug=debug)
     return sensfile, telgridfile
 
 def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NIRES', telgridfile=None,
@@ -60,7 +60,7 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
 
 def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
-              objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
+              sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
               scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
               mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
 
@@ -97,6 +97,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
     if do_sens:
         sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
                                                    star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
+                                                   sens_polyorder = sens_polyorder,
                                                    mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
     else:
         sensfile = std1dfile.replace('.fits', '.sens.fits')
