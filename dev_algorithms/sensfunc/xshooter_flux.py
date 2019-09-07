@@ -150,7 +150,7 @@ fileroots = ['J0252-0503_XShooter_VIS_2019Aug']
 #    fileroot = fileroots[ii]
 #    stdfile = stdfiles[ii]
 #    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-#              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+#              do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 ## J0305-3150
 qsoname = 'J0305-3150'
@@ -416,17 +416,30 @@ outroot = qsoname+'_'+instrument
 ## J2211-6320
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/J2211-6320/VIS/Science'
 stdfiles = ['spec1d_XSHOO.2019-06-08T23:19:27.375-LTT3218_XShooter_VIS_2019Jun08T231927.375.fits',
+            'spec1d_XSHOO.2019-08-22T06:07:20.738-Feige110_XShooter_VIS_2019Aug22T060720.739.fits',
             'spec1d_XSHOO.2019-08-22T06:07:20.738-Feige110_XShooter_VIS_2019Aug22T060720.739.fits']
-#BAD 'spec1d_XSHOO.2019-08-22T06:07:20.738-Feige110_XShooter_VIS_2019Aug22T060720.739.fits'
-#BAD 'spec1d_XSHOO.2019-08-22T06:02:20.203-Feige110_XShooter_VIS_2019Aug22T060220.203.fits'
 z_qso = 6.88
 tell_method = 'qso'
-fileroots = ['J2211-6320_XShooter_VIS_2019Jun09', 'J2211-6320_XShooter_VIS_2019Aug25']
+fileroots = ['J2211-6320_XShooter_VIS_2019Jun09', 'J2211-6320_XShooter_VIS_2019Aug25', 'J2211-6320_XShooter_VIS_2019Aug31']
 #for ii in range(len(fileroots)):
 #    fileroot = fileroots[ii]
 #    stdfile = stdfiles[ii]
 #    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-#              do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=False)
+#              do_sens=False, do_flux=True, do_stack=False, do_tell=False, disp=False, debug=False)
+stdfile = stdfiles[0]
+spec1dfiles = ['spec1d_XSHOO.2019-06-09T09:13:48.821-J2211-6320_XShooter_VIS_2019Jun09T091348.821.fits',
+               'spec1d_XSHOO.2019-06-09T09:34:55.790-J2211-6320_XShooter_VIS_2019Jun09T093455.790.fits',
+               'spec1d_XSHOO.2019-08-25T02:34:51.001-J2211-6320_XShooter_VIS_2019Aug25T023451.000.fits',
+               'spec1d_XSHOO.2019-08-25T02:55:59.509-J2211-6320_XShooter_VIS_2019Aug25T025559.509.fits',
+               'spec1d_XSHOO.2019-08-25T03:25:08.059-J2211-6320_XShooter_VIS_2019Aug25T032508.059.fits',
+               'spec1d_XSHOO.2019-08-25T03:46:15.959-J2211-6320_XShooter_VIS_2019Aug25T034615.959.fits',
+               'spec1d_XSHOO.2019-08-31T03:03:38.689-J2211-6320_XShooter_VIS_2019Aug31T030338.688.fits',
+               'spec1d_XSHOO.2019-08-31T03:24:47.247-J2211-6320_XShooter_VIS_2019Aug31T032447.247.fits',
+               'spec1d_XSHOO.2019-08-31T03:52:15.777-J2211-6320_XShooter_VIS_2019Aug31T035215.777.fits',
+               'spec1d_XSHOO.2019-08-31T04:13:21.105-J2211-6320_XShooter_VIS_2019Aug31T041321.105.fits']
+fileroot = 'J2211-6320_XShooter_VIS_2019'
+#flux_tell(sci_path, stdfile, spec1dfiles=spec1dfiles, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=False)
 
 ## J2232+2930
 qsoname = 'J2232+2930'
