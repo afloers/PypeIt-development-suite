@@ -62,7 +62,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
               scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
-              mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
+              mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, use_exist_sens=True,
+              disp=False, debug=False):
 
     if std_path is None:
         std_path = sci_path
@@ -94,13 +95,17 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
     if (star_ra is None) and (star_dec is None) and (star_mag is None) and (star_type is None):
         star_ra, star_dec = header['RA'], header['DEC']
 
+    sensfile = std1dfile.replace('.fits', '.sens.fits')
+    telgridfile = None # value it to None
     if do_sens:
-        sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
-                                                   star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
-                                                   sens_polyorder = sens_polyorder,
-                                                   mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
-    else:
-        sensfile = std1dfile.replace('.fits', '.sens.fits')
+        if os.path.exists(sensfile) and (use_exist_sens):
+            msgs.warn('{:} is already exists. Skip doing sensfunc.'.format(sensfile))
+        else:
+            sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
+                                                       star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
+                                                       sens_polyorder = sens_polyorder,
+                                                       mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
+    if telgridfile is None:
         msgs.info('Loading sensfile {:}'.format(sensfile))
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
