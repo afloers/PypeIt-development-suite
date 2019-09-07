@@ -10,7 +10,7 @@ from pypeit.core import coadd1d
 from pypeit import msgs
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
-                       star_dec=None, mask_abs_lines=True, disp=True, debug=False):
+                       star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
     # sensfunction output file name
     sensfile = std1dfile.replace('.fits','.sens.fits')
 
@@ -32,7 +32,7 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     # run telluric.sensfunc_telluric to get the sensfile
     TelSens = telluric.sensfunc_telluric(std1dfile, telgridfile, sensfile, star_type=star_type, star_mag=star_mag,
                                          star_ra=star_ra, star_dec=star_dec, mask_abs_lines=mask_abs_lines,
-                                         disp=disp, debug=debug)
+                                         polyorder=sens_polyorder, disp=disp, debug=debug)
     return sensfile, telgridfile
 
 def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NIRES', telgridfile=None,
@@ -60,8 +60,8 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
 
 def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
-              objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
-              scale_method=None, hand_scale=None,
+              sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
+              scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
               mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
 
     if std_path is None:
@@ -97,6 +97,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
     if do_sens:
         sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
                                                    star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
+                                                   sens_polyorder = sens_polyorder,
                                                    mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
     else:
         sensfile = std1dfile.replace('.fits', '.sens.fits')
@@ -137,12 +138,14 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp,
                                                                 sensfile=sensfile, ex_value=ex_value, outfile=stackfile,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
-                                                                debug=debug)
+                                                                wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
+                                                                const_weights=const_weights, debug=debug)
         else:
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.multi_combspec(fnames, objids, show=disp,
                                                                 ex_value=ex_value, outfile=stackfile,
+                                                                wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
-                                                                debug=debug, debug_scale=debug)
+                                                                const_weights=const_weights, debug=debug, debug_scale=debug)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
     else:
@@ -155,7 +158,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
                              mask_lyman_a=mask_lyman_a, show=disp, debug=debug)
 
 def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
-                     scale_method='poly', const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
+                     wave_grid_min=None, wave_grid_max=None, dwave=None, dv=None, dloglam=None, samp_fact=1.0,
+                     scale_method='poly', hand_scale=None, const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
                      debug=False, show=False):
 
     if spec1dfiles is None:
@@ -201,7 +205,8 @@ def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=N
 
     wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.combspec(waves, fluxes, ivars, masks, sn_smooth_npix,
              wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,ref_percentile=ref_percentile,
-             debug=debug, show=show, debug_scale=debug, show_scale=show)
+             wave_grid_min=wave_grid_min, wave_grid_max=wave_grid_max, dwave=dwave, dv=dv, dloglam=dloglam, samp_fact=samp_fact,
+             hand_scale=hand_scale, debug=debug, show=show, debug_scale=debug, show_scale=show)
 
     if outroot is None:
         outroot = fileroot.copy()
