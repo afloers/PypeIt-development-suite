@@ -21,6 +21,25 @@ stdfiles = ['spec1d_XSHOO.2011-08-20T09:53:04.321-Feige110_XShooter_VIS_2011Aug2
 #    flux_tell(sci_path, stdfile, instrument=instrument, do_sens=True, do_flux=False, do_stack=False, do_tell=False,
 #              disp=False, debug=False)
 
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/J0100+2802/VIS/Science'
+stdfiles = ['spec1d_XSHOO.2015-10-22T23:44:07.671-LTT7987_XShooter_VIS_2015Oct22T234407.671.fits',
+            'spec1d_XSHOO.2015-12-14T00:42:56.907-Feige110_XShooter_VIS_2015Dec14T004256.907.fits',
+            'spec1d_XSHOO.2015-12-15T00:39:06.447-Feige110_XShooter_VIS_2015Dec15T003906.447.fits',
+            'spec1d_XSHOO.2016-07-19T10:31:07.662-Feige110_XShooter_VIS_2016Jul19T103107.662.fits',
+            'spec1d_XSHOO.2016-07-20T10:16:47.492-Feige110_XShooter_VIS_2016Jul20T101647.492.fits',
+            'spec1d_XSHOO.2016-07-21T10:01:41.938-Feige110_XShooter_VIS_2016Jul21T100141.938.fits',
+            'spec1d_XSHOO.2016-07-28T01:37:09.128-LTT7987_XShooter_VIS_2016Jul28T013709.128.fits',
+            'spec1d_XSHOO.2016-07-28T09:59:04.684-Feige110_XShooter_VIS_2016Jul28T095904.685.fits',
+            'spec1d_XSHOO.2016-07-30T08:35:40.034-Feige110_XShooter_VIS_2016Jul30T083540.034.fits',
+            'spec1d_XSHOO.2016-07-31T05:27:58.851-Feige110_XShooter_VIS_2016Jul31T052758.851.fits',
+            'spec1d_XSHOO.2016-08-01T04:05:07.871-LTT7987_XShooter_VIS_2016Aug01T040507.871.fits',
+            'spec1d_XSHOO.2016-08-01T23:08:18.941-EG274_XShooter_VIS_2016Aug01T230818.941.fits']
+#for ii in range(len(stdfiles)):
+#    stdfile = stdfiles[ii]
+#    flux_tell(sci_path, stdfile, instrument=instrument, do_sens=True, do_flux=False, do_stack=False, do_tell=False,
+#              disp=False, debug=False)
+
+
 ## J0142-3327
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/J0142-3327/VIS/Science'
 stdfiles = ['spec1d_XSHOO.2015-10-21T08:57:55.950-LTT3218_XShooter_VIS_2015Oct21T085755.950.fits',
