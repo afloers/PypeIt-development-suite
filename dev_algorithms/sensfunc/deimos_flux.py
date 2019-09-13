@@ -1,5 +1,5 @@
 import numpy as np
-from dev_flux_tell import flux_tell
+from flux_coadd_tell import flux_tell
 
 #### sensfunction for DEIMOS
 instrument = 'DEIMOS'

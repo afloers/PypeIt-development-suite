@@ -1,4 +1,4 @@
-from dev_flux_tell import flux_tell, stack_multinight, merge_vis_nir
+from flux_coadd_tell import flux_tell, stack_multinight, merge_vis_nir
 
 ### sensfunction for VIS arm
 instrument = 'XSHOOTER_VIS'
