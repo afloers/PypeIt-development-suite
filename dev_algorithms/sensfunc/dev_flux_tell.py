@@ -58,7 +58,7 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
                                          fit_region_min=fit_region_min, fit_region_max=fit_region_max, func='legendre',
                                          model='exp', mask_lyman_a=mask_lyman_a, debug_init=debug, debug=debug, show=show)
 
-def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
+def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, outroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
               scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
@@ -69,6 +69,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
         std_path = sci_path
     if fileroot is None:
         fileroot = 'spec1d_flux_tell.fits'
+    if outroot is None:
+        outroot = fileroot
 
     std1dfile = os.path.join(std_path, stdfile)
     header = fits.getheader(std1dfile, 0)
@@ -128,11 +130,11 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
         msgs.warn('You skiped the fluxing step, make sure you have applied sensfunction to your 1D spectra.')
 
     # The name of the final stacked 1d spectrum
-    if len(fileroot.split('.')) == 1:
-        fileroot = fileroot+'.fits'
-    elif fileroot.split('.')[-1] != 'fits':
-        fileroot = fileroot + '.fits'
-    stackfile = os.path.join(sci_path, fileroot)
+    if len(outroot.split('.')) == 1:
+        outroot = outroot+'.fits'
+    elif outroot.split('.')[-1] != 'fits':
+        outroot = outroot + '.fits'
+    stackfile = os.path.join(sci_path, outroot)
 
     if do_stack:
         ## Let's coadd all the fluxed spectra
