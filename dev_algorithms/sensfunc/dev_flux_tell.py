@@ -11,8 +11,13 @@ from pypeit import msgs
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
                        star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
+
+
     # sensfunction output file name
-    sensfile = std1dfile.replace('.fits','.sens.fits')
+    if '.sens.fits' in std1dfile:
+        sensfile = std1dfile
+    else:
+        sensfile = std1dfile.replace('.fits','.sens.fits')
 
     # get the pca pickle file and atmosphere model grid
     pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
@@ -97,7 +102,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
     if (star_ra is None) and (star_dec is None) and (star_mag is None) and (star_type is None):
         star_ra, star_dec = header['RA'], header['DEC']
 
-    sensfile = std1dfile.replace('.fits', '.sens.fits')
+    if '.sens.fits' not in stdfile:
+        sensfile = std1dfile.replace('.fits', '.sens.fits')
     telgridfile = None # value it to None
     if do_sens:
         if os.path.exists(sensfile) and (use_exist_sens):
