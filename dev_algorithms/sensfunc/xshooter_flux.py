@@ -215,6 +215,23 @@ outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J1030', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=False, show=True)
 
+## J1030+0524 coadd2d
+qsoname = 'J1030+0524'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science_coadd'.format(qsoname)
+stdfile = 'spec1d_XSHOO.2011-02-24T00:01:08.393-LTT3218_XShooter_VIS_2011Feb24T000108.393.fits'
+z_qso = 6.30
+tell_method = 'qso'
+fileroot = 'J1030p0524_coadd2d_new'
+objids = ['OBJ0001']
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+          objids = objids,
+          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+outroot = qsoname+'_'+instrument
+#stack_multinight(sci_path, 'J1030', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+#                 sn_smooth_npix=None, debug=False, show=True)
+
+
 ## J1036-0232
 qsoname = 'J1036-0232'
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
