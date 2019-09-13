@@ -67,7 +67,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
               scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
-              mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, use_exist_sens=True,
+              mask_lyman_a=True, do_sens=False, do_flux=False, do_stack=False, do_tell=False, use_exist_sens=True,
               disp=False, debug=False):
 
     if std_path is None:
