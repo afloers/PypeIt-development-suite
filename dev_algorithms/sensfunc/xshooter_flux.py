@@ -1,11 +1,11 @@
-from dev_flux_tell import flux_tell, stack_multinight, merge_vis_nir
+from flux_coadd_tell import flux_tell, stack_multinight, merge_vis_nir
 
 ### sensfunction for VIS arm
 instrument = 'XSHOOTER_VIS'
 
 ## J0020-3653
 qsoname = 'J0020-3653'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-10-25T23:32:02.407-LTT7987_XShooter_VIS_2017Oct25T233202.407.fits',
             'spec1d_XSHOO.2017-10-25T23:32:02.407-LTT7987_XShooter_VIS_2017Oct25T233202.407.fits']
             #'spec1d_XSHOO.2017-10-25T23:37:51.508-LTT7987_XShooter_VIS_2017Oct25T233751.509.fits']
@@ -41,7 +41,7 @@ stack_region = [10150.0,10200.0]
 
 ## J0109-3047
 qsoname = 'J0109-3047'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2011-08-20T09:53:04.321-Feige110_XShooter_VIS_2011Aug20T095304.321.fits',
             'spec1d_XSHOO.2011-08-20T09:53:04.321-Feige110_XShooter_VIS_2011Aug20T095304.321.fits',
             'spec1d_XSHOO.2011-12-22T00:21:30.342-Feige110_XShooter_VIS_2011Dec22T002130.341.fits']
@@ -60,7 +60,7 @@ outroot = qsoname+'_'+instrument
 
 ## J0100+2802
 qsoname = 'J0100+2802'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J0100', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=False, show=True)
@@ -68,7 +68,7 @@ outroot = qsoname+'_'+instrument
 
 ## J0142-3327
 qsoname = 'J0142-3327'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2015-10-21T08:57:55.950-LTT3218_XShooter_VIS_2015Oct21T085755.950.fits',
             'spec1d_XSHOO.2015-11-19T23:46:57.778-Feige110_XShooter_VIS_2015Nov19T234657.777.fits']
 z_qso = 6.32
@@ -94,7 +94,7 @@ fileroots = ['J25.6821-33.4627_XShooter_VIS']
 
 ## J0224-4711
 qsoname = 'J0224-4711'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-11-23T08:25:51.567-LTT3218_XShooter_VIS_2017Nov23T082551.567.fits',
             'spec1d_XSHOO.2018-01-18T08:43:18.841-LTT3218_XShooter_VIS_2018Jan18T084318.841.fits']
 z_qso = 6.51
@@ -111,7 +111,7 @@ outroot = qsoname+'_'+instrument
 
 ## J0226+0302
 qsoname = 'J0226+0302'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-12-17T08:16:50.483-LTT3218_XShooter_VIS_2017Dec17T081650.483.fits',
             'spec1d_XSHOO.2018-01-14T00:42:27.513-GD71_XShooter_VIS_2018Jan14T004227.513.fits']
 z_qso = 6.54
@@ -128,7 +128,7 @@ fileroots = ['J0226+0302_XShooter_VIS_2017Dec17','J0226+0302_XShooter_VIS_2018Ja
 
 ## J0252-0503
 qsoname = 'J0252-0503'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2019-08-04T23:19:14.937-EG274_XShooter_VIS_2019Aug04T231914.937.fits',
             'spec1d_XSHOO.2019-08-04T23:19:14.937-EG274_XShooter_VIS_2019Aug04T231914.937.fits']
 z_qso = 7.0
@@ -154,7 +154,7 @@ fileroots = ['J0252-0503_XShooter_VIS_2019Aug']
 
 ## J0305-3150
 qsoname = 'J0305-3150'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-10-21T08:43:57.556-LTT3218_XShooter_VIS_2016Oct21T084357.556.fits',
             'spec1d_XSHOO.2016-11-01T23:41:14.083-LTT7987_XShooter_VIS_2016Nov01T234114.083.fits',
             'spec1d_XSHOO.2016-11-03T23:41:52.773-LTT7987_XShooter_VIS_2016Nov03T234152.772.fits',
@@ -192,7 +192,7 @@ outroot = qsoname+'_'+instrument
 
 ## J1030+0524
 qsoname = 'J1030+0524'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_SHOOT.2009-12-23T09:12:19.248-GD153_XShooter_VIS_2009Dec23T091219.248.fits',
             'spec1d_XSHOO.2011-02-24T00:01:08.393-LTT3218_XShooter_VIS_2011Feb24T000108.393.fits',
             'spec1d_XSHOO.2011-02-24T00:01:08.393-LTT3218_XShooter_VIS_2011Feb24T000108.393.fits',
@@ -215,9 +215,26 @@ outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J1030', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=False, show=True)
 
+## J1030+0524 coadd2d
+qsoname = 'J1030+0524'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science_coadd'.format(qsoname)
+stdfile = 'spec1d_XSHOO.2011-02-24T00:01:08.393-LTT3218_XShooter_VIS_2011Feb24T000108.393.fits'
+z_qso = 6.30
+tell_method = 'qso'
+fileroot = 'J1030p0524_coadd2d_new'
+objids = ['OBJ0001']
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+          objids = objids,
+          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+outroot = qsoname+'_'+instrument
+#stack_multinight(sci_path, 'J1030', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+#                 sn_smooth_npix=None, debug=False, show=True)
+
+
 ## J1036-0232
 qsoname = 'J1036-0232'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-04-03T23:17:21.979-LTT3218_XShooter_VIS_2017Apr03T231721.978.fits',
             'spec1d_XSHOO.2017-12-17T08:16:50.483-LTT3218_XShooter_VIS_2017Dec17T081650.483.fits']
 z_qso = 6.38
@@ -236,7 +253,7 @@ outroot = qsoname+'_'+instrument
 
 ## J1048-0109
 qsoname = 'J1048-0109'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/J1048-0109/VIS/Science'
 stdfiles = ['spec1d_XSHOO.2017-02-02T08:56:59.133-GD153_XShooter_VIS_2017Feb02T085659.133.fits']
             #'spec1d_XSHOO.2017-02-02T09:09:53.037-GD153_XShooter_VIS_2017Feb02T090953.037.fits']
@@ -253,7 +270,7 @@ objids = {'0':['OBJ0002','OBJ0001']}
 
 ## J1110-1329
 qsoname = 'J1110-1329'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-07-13T23:05:56.580-GD153_XShooter_VIS_2017Jul13T230556.580.fits']#,
             #'spec1d_XSHOO.2017-07-13T23:18:50.132-GD153_XShooter_VIS_2017Jul13T231850.133.fits']
 z_qso = 6.51
@@ -268,7 +285,7 @@ fileroots = ['J167m13_XShooter_VIS']
 
 ## J1148+0702
 qsoname = 'J1148+0702'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-04-05T08:20:18.681-EG274_XShooter_VIS_2017Apr05T082018.681.fits',
             'spec1d_XSHOO.2018-01-20T02:01:06.685-GD71_XShooter_VIS_2018Jan20T020106.685.fits',
             'spec1d_XSHOO.2018-02-06T09:12:46.984-EG274_XShooter_VIS_2018Feb06T091246.984.fits',
@@ -291,7 +308,7 @@ outroot = qsoname+'_'+instrument
 
 ## J1152+0055
 qsoname = 'J1152+0055'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-06-22T22:56:12.606-GD153_XShooter_VIS_2016Jun22T225612.606.fits',
             'spec1d_XSHOO.2017-01-04T08:35:14.940-LTT3218_XShooter_VIS_2017Jan04T083514.939.fits',
             'spec1d_XSHOO.2017-02-02T08:56:59.133-GD153_XShooter_VIS_2017Feb02T085659.133.fits',
@@ -322,7 +339,7 @@ outroot = qsoname+'_'+instrument
 
 ## J1212+0505
 qsoname = 'J1212+0505'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2018-02-23T23:54:44.833-GD71_XShooter_VIS_2018Feb23T235444.833.fits',
             'spec1d_XSHOO.2018-03-16T09:17:47.612-EG274_XShooter_VIS_2018Mar16T091747.612.fits']
 z_qso = 6.43
@@ -341,7 +358,7 @@ outroot = qsoname+'_'+instrument
 
 ## J1526-2049
 qsoname = 'J1526-2049'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-07-11T23:01:09.217-GD153_XShooter_VIS_2016Jul11T230109.217.fits']#,
             #'spec1d_XSHOO.2016-07-11T23:14:01.918-GD153_XShooter_VIS_2016Jul11T231401.919.fits']
 z_qso = 6.58
@@ -357,7 +374,7 @@ objids = {'0':['OBJ0002','OBJ0001']}
 
 ## J1629+2407
 qsoname = 'J1629+2407'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2017-03-25T23:21:44.486-LTT3218_XShooter_VIS_2017Mar25T232144.486.fits',
             'spec1d_XSHOO.2017-04-07T09:14:39.325-LTT7987_XShooter_VIS_2017Apr07T091439.325.fits',
             'spec1d_XSHOO.2017-06-19T01:21:16.371-EG274_XShooter_VIS_2017Jun19T012116.371.fits',
@@ -379,7 +396,7 @@ outroot = qsoname+'_'+instrument
 
 ## J2132+1217
 qsoname = 'J2132+1217'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-10-03T23:21:52.104-Feige110_XShooter_VIS_2016Oct03T232152.104.fits']#,
             #'spec1d_XSHOO.2016-10-04T23:20:12.386-LTT7987_XShooter_VIS_2016Oct04T232012.386.fits',
             #'spec1d_XSHOO.2016-10-08T01:46:37.154-Feige110_XShooter_VIS_2016Oct08T014637.154.fits',
@@ -396,7 +413,7 @@ fileroots = ['J323p12_XShooter_VIS']
 
 ## J2211-3206
 qsoname = 'J2211-3206'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2015-10-24T23:39:54.474-LTT7987_XShooter_VIS_2015Oct24T233954.473.fits',
             'spec1d_XSHOO.2016-10-04T23:20:12.386-LTT7987_XShooter_VIS_2016Oct04T232012.386.fits']
 z_qso = 6.33
@@ -443,7 +460,7 @@ fileroot = 'J2211-6320_XShooter_VIS_2019'
 
 ## J2232+2930
 qsoname = 'J2232+2930'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-10-31T23:39:49.435-LTT7987_XShooter_VIS_2016Oct31T233949.435.fits',
             'spec1d_XSHOO.2017-06-19T01:21:16.371-EG274_XShooter_VIS_2017Jun19T012116.371.fits',
             'spec1d_XSHOO.2017-06-20T10:11:53.907-Feige110_XShooter_VIS_2017Jun20T101153.907.fits',
@@ -467,7 +484,7 @@ outroot = qsoname+'_'+instrument
 
 ## J2318-3113
 qsoname = 'J2318-3113'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2016-08-04T23:08:47.402-GD153_XShooter_VIS_2016Aug04T230847.401.fits',
             'spec1d_XSHOO.2016-08-25T09:46:46.023-Feige110_XShooter_VIS_2016Aug25T094646.023.fits']
 z_qso = 6.43
@@ -492,7 +509,7 @@ fileroots = ['J2318m3113_XShooter_VIS_2016']
 
 ## J2348-3054
 qsoname = 'J2348-3054'
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
 stdfiles = ['spec1d_XSHOO.2011-08-21T10:14:39.913-Feige110_XShooter_VIS_2011Aug21T101439.913.fits',
             'spec1d_XSHOO.2011-08-22T09:57:07.714-Feige110_XShooter_VIS_2011Aug22T095707.714.fits']
 z_qso = 6.90

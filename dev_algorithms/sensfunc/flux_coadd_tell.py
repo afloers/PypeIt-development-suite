@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 
 from astropy.io import fits
 
@@ -11,8 +10,13 @@ from pypeit import msgs
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
                        star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
+
+
     # sensfunction output file name
-    sensfile = std1dfile.replace('.fits','.sens.fits')
+    if '.sens.fits' in std1dfile:
+        sensfile = std1dfile
+    else:
+        sensfile = std1dfile.replace('.fits','.sens.fits')
 
     # get the pca pickle file and atmosphere model grid
     pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
@@ -59,16 +63,19 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
                                          fit_region_min=fit_region_min, fit_region_max=fit_region_max, func='legendre',
                                          model='exp', mask_lyman_a=mask_lyman_a, debug_init=debug, debug=debug, show=show)
 
-def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, z_qso=None, tell_method='qso',
+def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, outroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
               scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
-              mask_lyman_a=True, do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False):
+              mask_lyman_a=True, do_sens=False, do_flux=False, do_stack=False, do_tell=False, use_exist_sens=True,
+              disp=False, debug=False):
 
     if std_path is None:
         std_path = sci_path
     if fileroot is None:
         fileroot = 'spec1d_flux_tell.fits'
+    if outroot is None:
+        outroot = fileroot
 
     std1dfile = os.path.join(std_path, stdfile)
     header = fits.getheader(std1dfile, 0)
@@ -95,13 +102,18 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
     if (star_ra is None) and (star_dec is None) and (star_mag is None) and (star_type is None):
         star_ra, star_dec = header['RA'], header['DEC']
 
-    if do_sens:
-        sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
-                                                   star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
-                                                   sens_polyorder = sens_polyorder,
-                                                   mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
-    else:
+    if '.sens.fits' not in stdfile:
         sensfile = std1dfile.replace('.fits', '.sens.fits')
+    telgridfile = None # value it to None
+    if do_sens:
+        if os.path.exists(sensfile) and (use_exist_sens):
+            msgs.warn('{:} is already exists. Skip doing sensfunc.'.format(sensfile))
+        else:
+            sensfile, telgridfile = get_sens_from_file(std1dfile=std1dfile, instrument=instrument, star_type=star_type,
+                                                       star_mag=star_mag, star_ra=star_ra, star_dec=star_dec,
+                                                       sens_polyorder = sens_polyorder,
+                                                       mask_abs_lines=mask_abs_lines, disp=disp, debug=debug)
+    if telgridfile is None:
         msgs.info('Loading sensfile {:}'.format(sensfile))
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
@@ -124,11 +136,11 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
         msgs.warn('You skiped the fluxing step, make sure you have applied sensfunction to your 1D spectra.')
 
     # The name of the final stacked 1d spectrum
-    if len(fileroot.split('.')) == 1:
-        fileroot = fileroot+'.fits'
-    elif fileroot.split('.')[-1] != 'fits':
-        fileroot = fileroot + '.fits'
-    stackfile = os.path.join(sci_path, fileroot)
+    if len(outroot.split('.')) == 1:
+        outroot = outroot+'.fits'
+    elif outroot.split('.')[-1] != 'fits':
+        outroot = outroot + '.fits'
+    stackfile = os.path.join(sci_path, outroot)
 
     if do_stack:
         ## Let's coadd all the fluxed spectra
