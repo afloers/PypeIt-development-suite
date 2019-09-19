@@ -28,6 +28,7 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     else:
         telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         msgs.warn('No telluric grid is found. Using MaunaKea!')
+    msgs.info('Using {:}'.format(telgridfile))
 
     # run telluric.sensfunc_telluric to get the sensfile
     TelSens = telluric.sensfunc_telluric(std1dfile, telgridfile, sensfile, star_type=star_type, star_mag=star_mag,
