@@ -224,12 +224,9 @@ z_qso = 6.30
 tell_method = 'qso'
 fileroot = 'J1030p0524_coadd2d_new'
 objids = ['OBJ0001']
-flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          objids = objids,
-          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
-outroot = qsoname+'_'+instrument
-#stack_multinight(sci_path, 'J1030', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
-#                 sn_smooth_npix=None, debug=False, show=True)
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+#          objids = objids,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
 
 
 ## J1036-0232
@@ -336,6 +333,20 @@ objids = {'0':['OBJ0002','OBJ0001'],'1':['OBJ0002','OBJ0001'],
 outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J1152', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=True, show=True)
+
+## J1152+0055 coadd2d
+qsoname = 'J1152+0055'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science'.format(qsoname,qsoname)
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/VIS/Science_coadd'.format(qsoname,qsoname)
+stdfile = 'spec1d_XSHOO.2018-03-12T23:39:07.258-GD71_XShooter_VIS_2018Mar12T233907.258.fits'
+z_qso = 6.36
+tell_method = 'qso'
+fileroot = 'J1152p0055_coadd2d_new'
+objids = ['OBJ0001']
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+          objids = objids,
+          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+
 
 ## J1212+0505
 qsoname = 'J1212+0505'
