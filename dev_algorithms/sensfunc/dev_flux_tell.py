@@ -15,15 +15,15 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     sensfile = std1dfile.replace('.fits','.sens.fits')
 
     # get the pca pickle file and atmosphere model grid
-    pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+    pca_file = os.path.join('/d2/Feige', 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
 
     if (instrument=='GNIRS') or (instrument=='NIRES'):
-        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        telgridfile = os.path.join('/d2/Feige', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
     elif instrument == 'XSHOOTER_VIS':
-        telgridfile = os.path.join(os.getenv('HOME'),
+        telgridfile = os.path.join('/d2/Feige',
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
     elif instrument == 'XSHOOTER_NIR':
-        telgridfile = os.path.join(os.getenv('HOME'),
+        telgridfile = os.path.join('/d2/Feige',
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
     else:
         msgs.error('Telluric Grid TBD.')
@@ -43,7 +43,7 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
     outfile = stackfilename.replace('.fits','_tellcorr.fits')
 
     if tell_method=='qso':
-        pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+        pca_file = os.path.join('/d2/Feige', 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
         # run telluric.qso_telluric to get the final results
         # TODO: add other modes here
         TelQSO = telluric.qso_telluric(stackfilename, telgridfile, pca_file, z_obj, telloutfile, outfile,
@@ -126,12 +126,12 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
         msgs.info('Loading sensfile {:}'.format(sensfile))
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
-            telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            telgridfile = os.path.join('/d2/Feige', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         elif instrument == 'XSHOOTER_VIS':
-            telgridfile = os.path.join(os.getenv('HOME'),
+            telgridfile = os.path.join('/d2/Feige',
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
         elif instrument == 'XSHOOTER_NIR':
-            telgridfile = os.path.join(os.getenv('HOME'),
+            telgridfile = os.path.join('/d2/Feige',
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
         else:
             msgs.error('Telluric Grid TBD.')
@@ -172,7 +172,7 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
         #                a individual order stacked spectra (multi-extension) named as '{:}_order.fits'.format(qsoname)
 
         wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp, sensfile=sensfile,
-                                                                              ex_value=ex_value, outfile=stackfile, debug=debug)
+                                                                              ex_value=ex_value, outfile=stackfile, debug=False)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
     else:
@@ -182,5 +182,5 @@ def flux_tell(sci_path, stdfile, fileroot=None, z_qso=None, tell_method='qso', i
     if do_tell:
         apply_tell_from_file(z_qso, stackfile, tell_method=tell_method, instrument=instrument, telgridfile=telgridfile,
                              polyorder=polyorder, fit_region_min=fit_region_min, fit_region_max=fit_region_max,
-                             mask_lyman_a=mask_lyman_a, show=disp, debug=debug)
+                             mask_lyman_a=mask_lyman_a, show=True, debug=debug)
 
