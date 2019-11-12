@@ -18,21 +18,20 @@ fileroot = 'J0100_hz6_FIRE'
 
 ## J0313-1806
 qsoname = 'J0313-1806'
-sci_path = '/Users/feige/Desktop/FIRE1911/Echelle/Science'
-stdfile = 'spec1d_fire_0059-HD2641_FIRE_8590Oct27T171921.000.fits'
+sci_path = '/Users/feige/Desktop/FIRE1911/1111/Science'
+stdfile = 'spec1d_fire_0162-GD71_FIRE_8590Nov02T204709.000.fits'
 z_qso = 7.65
 tell_method = 'qso'
 fileroot = 'J0313-1806_FIRE'
-flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          star_type='A0', star_mag=9.48,
-          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+#flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ## J0038-0653
 qsoname = 'J0038-0653'
 z_qso = 7.1
 tell_method = 'qso'
 fileroot = 'J0038-0653_FIRE'
-flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          star_type='A0', star_mag=9.48,
-          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+#flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+#          star_type='A0', star_mag=9.48,
+#          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
