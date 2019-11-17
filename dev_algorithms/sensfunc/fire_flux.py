@@ -18,14 +18,14 @@ fileroot = 'J0100_hz6_FIRE'
 
 ## J0313-1806
 qsoname = 'J0313-1806'
-sci_path = '/home/feige/201911_FIRE/data/1111/Science'
-std_path = '/home/feige/201911_FIRE/data/1111/Science'
-stdfile = 'spec1d_fire_0162-GD71_FIRE_8590Nov02T204709.000.fits'
+sci_path = '/d2/Feige/Dropbox/OBS_DATA/FIRE/Echelle/ut191111/Science'
+std_path = '/d2/Feige/Dropbox/OBS_DATA/FIRE/Echelle/ut191111/Science'
+stdfile = 'spec1d_fire_0157-GD71_FIRE_8590Nov02T203203.000.fits'
 z_qso = 7.65
 tell_method = 'qso'
 fileroot = 'J0313-1806_FIRE'
 flux_tell(sci_path, stdfile, std_path=std_path,instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=False, debug=True)
+          do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ## J0038-0653
 qsoname = 'J0038-0653'
