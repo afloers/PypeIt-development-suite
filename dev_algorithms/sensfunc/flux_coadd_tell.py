@@ -155,7 +155,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
 
     ### Apply the sensfunc to all spectra (only sensfunc but not tellluric)
     if do_flux:
-        apply_sensfunc(fnames, sensfile, extinct_correct=False, tell_correct=False, debug=debug, show=disp)
+        apply_sensfunc(fnames, sensfile, extinct_correct=False, tell_correct=False, debug=debug)
         # fnames_flux = [f.replace('.fits', '_flux.fits') for f in fnames]
     else:
         msgs.warn('You skiped the fluxing step, make sure you have applied sensfunction to your 1D spectra.')
