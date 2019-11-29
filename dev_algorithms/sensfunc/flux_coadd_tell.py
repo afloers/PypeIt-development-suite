@@ -2,14 +2,36 @@ import os
 import numpy as np
 
 from astropy.io import fits
+from astropy.table import Table
 
 from pypeit.core import telluric, save, load
-from pypeit.core.flux_calib import apply_sensfunc
+from pypeit.core.flux_calib import apply_sensfunc_specobjs
 from pypeit.core import coadd1d
 from pypeit import msgs
+from pypeit.spectrographs.util import load_spectrograph
 
 basedir = os.getenv('HOME')
 #basedir = '/d2/Feige'
+
+
+def apply_sensfunc(fnames, sensfile, extinct_correct=True, tell_correct=False, debug=False):
+
+    sens_meta = Table.read(sensfile, 1)
+    sens_table = Table.read(sensfile, 2)
+
+    nexp = np.size(fnames)
+    for iexp in range(nexp):
+        spec1dfile = fnames[iexp]
+        sobjs, head = load.load_specobjs(spec1dfile)
+        instrument = head['INSTRUME']
+        spectrograph = load_spectrograph(instrument)
+        airmass, exptime = head['AIRMASS'], head['EXPTIME']
+        longitude, latitude = head['LON-OBS'], head['LAT-OBS']
+
+        apply_sensfunc_specobjs(sobjs, sens_meta, sens_table, airmass, exptime, extinct_correct=extinct_correct,
+                                tell_correct=tell_correct, longitude=longitude, latitude=latitude,
+                                debug=debug)
+        save.save_1d_spectra_fits(sobjs, head, spectrograph, spec1dfile, helio_dict=None, overwrite=True)
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
                        star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
