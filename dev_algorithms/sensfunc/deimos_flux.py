@@ -1,20 +1,24 @@
+import os
 import numpy as np
 from flux_coadd_tell import flux_tell
 
 #### sensfunction for DEIMOS
 instrument = 'DEIMOS'
 
+basedir = os.getenv('HOME')
+#basedir = '/d2/Feige'
+
 #### Generate SENSFUNC
 ## 830G centered at 8100A
 ## det 03 and 07
-sci_path = '/Users/feige/Dropbox/OBS_DATA/DEIMOS/Feige110/Science'
+sci_path = os.path.join(basedir, 'Dropbox/OBS_DATA/DEIMOS/Feige110/Science')
 stdfile = 'spec1d_d0526_0134-Feige110_DEIMOS_2017May26T145952.051.fits'
 #flux_tell(sci_path, stdfile, instrument=instrument, do_sens=True, do_flux=False, do_stack=False, do_tell=False,
 #          disp=True, debug=True)
 
 ## 830G centered at 8400A
 ## det 03 and 07
-sci_path = '/Users/feige/Dropbox/OBS_DATA/DEIMOS/J036+03/Science'
+sci_path = sci_path = os.path.join(basedir, 'Dropbox/OBS_DATA/DEIMOS/J036+03/Science')
 stdfile = 'spec1d_d0914_0048-G191B2B_DEIMOS_2017Sep14T152535.155.fits'
 #flux_tell(sci_path, stdfile, instrument=instrument, do_sens=True, do_flux=False, do_stack=False, do_tell=False,
 #          disp=True, debug=True)
