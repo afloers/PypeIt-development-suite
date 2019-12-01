@@ -1,8 +1,46 @@
+import os
 from flux_coadd_tell import flux_tell, stack_multinight
 
 ### sensfunction for FIRE
 instrument = 'FIRE'
 
+
+#basedir = '/d2/Feige/'
+basedir = os.getenv('HOME')
+
+std_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/SENSFUNC')
+stdfile = 'spec1d_fire_0162-GD71_FIRE_8590Nov02T204709.000.fits'
+
+tell_method = 'qso'
+
+## J0313-1806
+sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J0313m1806')
+z_qso = 7.65
+fileroot = 'J0313-1806_FIRE'
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+
+## J1007+2115
+sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J1007p2125')
+z_qso = 7.51
+fileroot = 'J1007+2115_FIRE'
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+          tell_method=tell_method,
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+
+## J0038-0653
+sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J0038m0653')
+z_qso = 7.1
+tell_method = 'qso'
+fileroot = 'J0038-0653_FIRE'
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+          tell_method=tell_method,
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+
+
+### OLD
+aaaa
 ## J0100+2802
 qsoname = 'J0100+2802'
 sci_path = '/Users/feige/Desktop/FIRE_J0100/Science'
@@ -16,24 +54,7 @@ fileroot = 'J0100_hz6_FIRE'
 #          star_type='A0', star_mag=9.92,
 #          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
-## J0313-1806
-qsoname = 'J0313-1806'
-sci_path = '/Users/feige/Desktop/FIRE1911/1111/Science'
-stdfile = 'spec1d_fire_0162-GD71_FIRE_8590Nov02T204709.000.fits'
-z_qso = 7.65
-tell_method = 'qso'
-fileroot = 'J0313-1806_FIRE'
-flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=False)
 
-## J0038-0653
-qsoname = 'J0038-0653'
-z_qso = 7.1
-tell_method = 'qso'
-fileroot = 'J0038-0653_FIRE'
-flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          star_type='A0', star_mag=9.48,
-          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ### Longslit
 ## J0313-1806
