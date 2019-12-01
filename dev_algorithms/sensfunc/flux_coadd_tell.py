@@ -22,7 +22,8 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     pca_file = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
 
     if (instrument=='GNIRS') or (instrument=='NIRES'):
-        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+        #telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
     elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
         telgridfile = os.path.join(os.getenv('HOME'),
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
@@ -30,7 +31,8 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
         telgridfile = os.path.join(os.getenv('HOME'),
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
     else:
-        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+        #telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         msgs.warn('No telluric grid is found. Using MaunaKea!')
     msgs.info('Using {:}'.format(telgridfile))
 
@@ -117,7 +119,9 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
         msgs.info('Loading sensfile {:}'.format(sensfile))
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
-            telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            telgridfile = os.path.join(os.getenv('HOME'),
+                                       'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+            #telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
             telgridfile = os.path.join(os.getenv('HOME'),
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
@@ -125,7 +129,9 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
             telgridfile = os.path.join(os.getenv('HOME'),
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
         else:
-            telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            telgridfile = os.path.join(os.getenv('HOME'),
+                                       'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+            #telgridfile = os.path.join(os.getenv('HOME'), 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
             msgs.warn('No telluric grid is found. Using MaunaKea!')
 
     ### Apply the sensfunc to all spectra (only sensfunc but not tellluric)
@@ -170,7 +176,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
                              polyorder=polyorder, fit_region_min=fit_region_min, fit_region_max=fit_region_max,
                              mask_lyman_a=mask_lyman_a, show=disp, debug=debug)
 
-def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
                      wave_grid_min=None, wave_grid_max=None, dwave=None, dv=None, dloglam=None, samp_fact=1.0,
                      scale_method='poly', hand_scale=None, const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
                      debug=False, show=False):
