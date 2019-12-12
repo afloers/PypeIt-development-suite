@@ -18,10 +18,18 @@ fileroots = ['J0020-3653_XShooter_NIR_2017']
 
 qsoname = 'J0100+2802'
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
-sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/VIS/Science'.format(qsoname)
 outroot = qsoname+'_'+instrument
 #stack_multinight(sci_path, 'J0100', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
-#                 sn_smooth_npix=None, debug=False, show=True)
+#                 wave_grid_max=20500., sn_smooth_npix=None, debug=False, show=True)
+
+## merge VIS and NIR
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/FSpec'
+spec1dvis = 'J0100+2802_XSHOOTER_VIS.fits'
+spec1dnir = 'J0100+2802_XSHOOTER_NIR.fits'
+outfile = qsoname+'_XShooter.fits'
+stack_region = [10100.0,10280.0]
+merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
+              scale_method='median')
 
 # J0224-4711
 qsoname = 'J0224-4711'
@@ -89,8 +97,8 @@ spec1dnir = 'J0439+1634_XSHOOTER_NIR.fits'
 qsoname = 'J0439+1634'
 outfile = qsoname+'_XShooter.fits'
 stack_region = [10100.0,10280.0]
-merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
-              scale_method='median')
+#merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
+#              scale_method='median')
 
 
 ## J1110-1329
