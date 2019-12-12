@@ -102,5 +102,5 @@ outroot = 'J0313-1806_FIRE_NIRES_FL2'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/J0313/FIRE_NIRES_FL2')
 spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms_tellcorr_scale.fits',
                'J0313-1806_FLAMINGOS_tellcorr_scale.fits']
-stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
-                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
+#stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
+#                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
