@@ -92,10 +92,10 @@ objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000
           'SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
           'SPAT0977-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01']
-#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
-#          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=8,
-#          wave_grid_min=13640., wave_grid_max=25200.,
-#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
+          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=8,
+          wave_grid_min=13640., wave_grid_max=25200.,
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 ### Stack spectra obtained from FIRE and NIRES
 outroot = 'J0313-1806_FIRE_NIRES_FL2'
