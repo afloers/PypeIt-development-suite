@@ -16,7 +16,7 @@ tell_method = 'qso'
 
 z_qso = 7.65
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/ut191121/Science')
-outroot = 'J0313-1806_FLAMINGOS'
+outroot = 'J0313-1806_FLAMINGOS_ut191121'
 spec1dfiles = ['spec1d_S20191121S0208-J0313-1806_FLAMINGOS_2019Nov21T071307.500.fits',
                'spec1d_S20191121S0209-J0313-1806_FLAMINGOS_2019Nov21T071307.500.fits',
                'spec1d_S20191121S0212-J0313-1806_FLAMINGOS_2019Nov21T071307.500.fits',
@@ -30,6 +30,35 @@ spec1dfiles = ['spec1d_S20191121S0208-J0313-1806_FLAMINGOS_2019Nov21T071307.500.
 objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
           'SPAT1088-SLIT0000-DET01','SPAT0978-SLIT0000-DET01']
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
+#          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=11,
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=False, disp=True, debug=True)
+
+sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/ut191211/Science')
+outroot = 'J0313-1806_FLAMINGOS'
+spec1dfiles = ['spec1d_S20191211S0278-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0279-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0282-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0283-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0286-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0287-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0290-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0291-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0294-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0295-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0298-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0299-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0302-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0303-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0306-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0307-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0310-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191211S0311-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits']
+objids = ['SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01']
 flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
           outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=11,
-          do_sens=True, do_flux=False, do_stack=False, do_tell=False, disp=True, debug=True)
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
