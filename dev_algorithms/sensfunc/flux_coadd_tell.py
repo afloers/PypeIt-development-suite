@@ -245,8 +245,8 @@ def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, obj
 
 def merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path='./',stack_region = [10150.0,10200.0],
                   wave_method = 'log10', dwave=None, dv=None, dloglam=None, samp_fact=1.0, wave_grid_min=None,
-                  wave_grid_max=None, const_weights=True, sn_smooth_npix=None, ref_percentile=20.0,
-                  maxiter_scale=5, sigrej_scale=3, scale_method='none', hand_scale=None, sn_max_medscale=2.0,
+                  wave_grid_max=None, const_weights=True, sn_smooth_npix=None, ref_percentile=70.0,
+                  maxiter_scale=5, sigrej_scale=3, scale_method='median', hand_scale=None, sn_max_medscale=2.0,
                   sn_min_medscale=0.5, sn_clip=30.0, lower=3.0, upper=3.0, maxrej=None, maxiter_reject=5,
                   qafile=None, title='', debug=False, show=True):
 
