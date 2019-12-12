@@ -68,7 +68,8 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
 def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, outroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
-              scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
+              scale_method=None, hand_scale=None, const_weights=False, dwave=None, dv=None,
+              dloglam=None, samp_fact=1.0, wave_grid_min=None, wave_grid_max=None,
               mask_lyman_a=True, do_sens=False, do_flux=False, do_stack=False, do_tell=False, use_exist_sens=True,
               disp=False, debug=False):
 
@@ -157,6 +158,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp,
                                                                 sensfile=sensfile, ex_value=ex_value, outfile=stackfile,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
+                                                                wave_method='log10',dwave=dwave, dv=dv,
+                                                                dloglam=dloglam, samp_fact=samp_fact,
                                                                 wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 const_weights=const_weights, debug=debug)
         else:
@@ -164,6 +167,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
                                                                 ex_value=ex_value, outfile=stackfile,
                                                                 wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
+                                                                wave_method='linear', dwave=dwave,dv=dv,
+                                                                dloglam=dloglam, samp_fact=samp_fact,
                                                                 const_weights=const_weights, debug=debug, debug_scale=debug)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
@@ -179,7 +184,7 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
 def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
                      wave_grid_min=None, wave_grid_max=None, dwave=None, dv=None, dloglam=None, samp_fact=1.0,
                      scale_method='poly', hand_scale=None, const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
-                     debug=False, show=False):
+                     ivar_weights=False, debug=False, show=False):
 
     if spec1dfiles is None:
         #spec1dfiles = np.genfromtxt(spec1dlist,dtype='str')
@@ -225,7 +230,7 @@ def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, obj
     wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.combspec(waves, fluxes, ivars, masks, sn_smooth_npix,
              wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,ref_percentile=ref_percentile,
              wave_grid_min=wave_grid_min, wave_grid_max=wave_grid_max, dwave=dwave, dv=dv, dloglam=dloglam, samp_fact=samp_fact,
-             hand_scale=hand_scale, debug=debug, show=show, debug_scale=debug, show_scale=show)
+             hand_scale=hand_scale, ivar_weights=ivar_weights, debug=debug, show=show, debug_scale=debug, show_scale=show)
 
     if outroot is None:
         outroot = fileroot.copy()
