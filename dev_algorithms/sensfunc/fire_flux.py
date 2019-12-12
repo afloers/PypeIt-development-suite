@@ -15,7 +15,7 @@ tell_method = 'qso'
 
 ## J0313-1806
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J0313m1806')
-z_qso = 7.65
+z_qso = 7.62
 fileroot = 'J0313-1806_FIRE'
 flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
           tell_method=tell_method,
