@@ -17,26 +17,26 @@ tell_method = 'qso'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J0313m1806')
 z_qso = 7.65
 fileroot = 'J0313-1806_FIRE'
-#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
-#          tell_method=tell_method,
-#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+          tell_method=tell_method,
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 ## J1007+2115
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J1007p2125')
 z_qso = 7.51
 fileroot = 'J1007+2115_FIRE'
-flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
-          tell_method=tell_method,
-          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method,
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 ## J0038-0653
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FIRE/Echelle/J0038m0653')
 z_qso = 7.1
 tell_method = 'qso'
 fileroot = 'J0038-0653_FIRE'
-flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
-          tell_method=tell_method,
-          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method,
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 
 ### OLD
