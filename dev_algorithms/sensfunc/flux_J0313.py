@@ -35,12 +35,12 @@ fileroot = 'J0313-1806_FIRE'
 outroot = 'J0313-1806_FIRE'
 #flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
 #          tell_method=tell_method, outroot=outroot,
-#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=True)
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=False, debug=False)
 
 outroot = 'J0313-1806_FIRE_dv50kms'
 #flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
 #          tell_method=tell_method, outroot=outroot, dv=50.,
-#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=False)
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=False, debug=False)
 
 ### Stack spectra obtained from FIRE and NIRES
 outroot = 'J0313-1806_FIRE_NIRES_FL2'
@@ -99,14 +99,14 @@ objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000
 
 ### Stack spectra obtained from FIRE and NIRES
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/J0313/FIRE_NIRES_FL2')
-outroot = 'J0313-1806_FIRE_NIRES_FL2_dv150'
+outroot = 'J0313-1806_FIRE_NIRES_FL2_dv200'
 spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms_tellcorr_scale.fits',
                'J0313-1806_FLAMINGOS_tellcorr_scale.fits']
-#stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
-#                 ex_value='OPT', scale_method='none', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
+stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=200.0,
+                 ex_value='OPT', scale_method='none', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
 
 outroot = 'J0313-1806_NIRES_FL2_dv200'
 spec1dfiles = ['J0313-1806_NIRES_dv50kms_tellcorr_scale.fits',
                'J0313-1806_FLAMINGOS_tellcorr_scale.fits']
-stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=200.0,
-                 ex_value='OPT', scale_method='none', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
+#stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=200.0,
+#                 ex_value='OPT', scale_method='none', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
