@@ -20,7 +20,15 @@ spec1dfiles = ['spec1d_m191118_0059-J0038-0653_OFF_MOSFIRE_2019Nov18T092342.427.
                'spec1d_m191118_0060-J0038-0653_OFF_MOSFIRE_2019Nov18T093452.567.fits']
 objids = ['SPAT1092-SLIT0000-DET01','SPAT1121-SLIT0000-DET01']
 outroot = 'J0038m0653_MOSFIRE_2019nov18'
+#flux_tell(sci_path, stdfile, spec1dfiles=spec1dfiles, std_path=std_path, instrument=instrument,
+#          outroot=outroot, objids=objids,  z_qso=z_qso, tell_method=tell_method,
+#          fit_region_min=[9200.0], fit_region_max=[9900.0],sens_polyorder=8,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=True)
+
+spec1dfiles = ['spec1d_m191118_0093-J0427+0327_OFF_MOSFIRE_2019Nov18T131224.997.fits']
+objids = ['SPAT0970-SLIT0000-DET01']
+outroot = 'J0427p0327_MOSFIRE_2019nov18'
 flux_tell(sci_path, stdfile, spec1dfiles=spec1dfiles, std_path=std_path, instrument=instrument,
           outroot=outroot, objids=objids,  z_qso=z_qso, tell_method=tell_method,
           fit_region_min=[9200.0], fit_region_max=[9900.0],sens_polyorder=8,
-          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=True)
+          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
