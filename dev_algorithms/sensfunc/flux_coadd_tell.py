@@ -8,6 +8,9 @@ from pypeit.core.flux_calib import apply_sensfunc
 from pypeit.core import coadd1d
 from pypeit import msgs
 
+#basedir = os.getenv('HOME')
+basedir = '/d2/Feige'
+
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
                        star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
 
@@ -19,18 +22,20 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
         sensfile = std1dfile.replace('.fits','.sens.fits')
 
     # get the pca pickle file and atmosphere model grid
-    pca_file = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+    pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
 
     if (instrument=='GNIRS') or (instrument=='NIRES'):
-        telgridfile = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+        #telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
     elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
-        telgridfile = os.path.join('/d2/Feige/',
+        telgridfile = os.path.join(basedir,
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
     elif instrument == 'XSHOOTER_NIR':
-        telgridfile = os.path.join('/d2/Feige/',
+        telgridfile = os.path.join(basedir,
                                    'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
     else:
-        telgridfile = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+        telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+        #telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         msgs.warn('No telluric grid is found. Using MaunaKea!')
     msgs.info('Using {:}'.format(telgridfile))
 
@@ -53,7 +58,7 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
         outfile = stackfilename.replace('.fits','_tellcorr.fits')
 
     if tell_method=='qso':
-        pca_file = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+        pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
         # run telluric.qso_telluric to get the final results
         # TODO: add other modes here
         TelQSO = telluric.qso_telluric(stackfilename, telgridfile, pca_file, z_obj, telloutfile, outfile,
@@ -66,7 +71,8 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
 def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None, outroot=None, z_qso=None, tell_method='qso',
               instrument=None, star_type=None, star_mag=None, star_ra=None, star_dec=None, mask_abs_lines=True,
               sens_polyorder=8, objids=None, ex_value='OPT', polyorder=3, fit_region_min=[9200.0], fit_region_max=[9700.0],
-              scale_method=None, hand_scale=None, const_weights=False, wave_grid_min=None, wave_grid_max=None,
+              scale_method=None, hand_scale=None, const_weights=False, dwave=None, dv=None,
+              dloglam=None, samp_fact=1.0, wave_grid_min=None, wave_grid_max=None,
               mask_lyman_a=True, do_sens=False, do_flux=False, do_stack=False, do_tell=False, use_exist_sens=True,
               disp=False, debug=False):
 
@@ -117,15 +123,19 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
         msgs.info('Loading sensfile {:}'.format(sensfile))
 
         if (instrument=='GNIRS') or (instrument=='NIRES'):
-            telgridfile = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            telgridfile = os.path.join(basedir,
+                                       'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+            #telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
         elif (instrument == 'XSHOOTER_VIS') or (instrument == 'GMOS-S'):
-            telgridfile = os.path.join('/d2/Feige/',
+            telgridfile = os.path.join(basedir,
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_VIS_4900_11100_R25000.fits')
         elif instrument == 'XSHOOTER_NIR':
-            telgridfile = os.path.join('/d2/Feige/',
+            telgridfile = os.path.join(basedir,
                                        'Dropbox/PypeIt_Redux/XSHOOTER/TelFit_Paranal_NIR_9800_25000_R25000.fits')
         else:
-            telgridfile = os.path.join('/d2/Feige/', 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
+            telgridfile = os.path.join(basedir,
+                                       'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
+            #telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
             msgs.warn('No telluric grid is found. Using MaunaKea!')
 
     ### Apply the sensfunc to all spectra (only sensfunc but not tellluric)
@@ -151,6 +161,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
             wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.ech_combspec(fnames, objids, show=disp,
                                                                 sensfile=sensfile, ex_value=ex_value, outfile=stackfile,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
+                                                                wave_method='log10',dwave=dwave, dv=dv,
+                                                                dloglam=dloglam, samp_fact=samp_fact,
                                                                 wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 const_weights=const_weights, debug=debug)
         else:
@@ -158,6 +170,8 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
                                                                 ex_value=ex_value, outfile=stackfile,
                                                                 wave_grid_min=wave_grid_min,wave_grid_max=wave_grid_max,
                                                                 scale_method=scale_method, hand_scale=hand_scale,
+                                                                wave_method='linear', dwave=dwave,dv=dv,
+                                                                dloglam=dloglam, samp_fact=samp_fact,
                                                                 const_weights=const_weights, debug=debug, debug_scale=debug)
     elif os.path.exists(stackfile):
         msgs.info('Loading stacked 1d spectrum {:}'.format(stackfile))
@@ -170,10 +184,10 @@ def flux_tell(sci_path, stdfile, spec1dfiles=None, std_path=None, fileroot=None,
                              polyorder=polyorder, fit_region_min=fit_region_min, fit_region_max=fit_region_max,
                              mask_lyman_a=mask_lyman_a, show=disp, debug=debug)
 
-def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
+def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
                      wave_grid_min=None, wave_grid_max=None, dwave=None, dv=None, dloglam=None, samp_fact=1.0,
                      scale_method='poly', hand_scale=None, const_weights=False, ref_percentile=80.0, sn_smooth_npix=None,
-                     debug=False, show=False):
+                     ivar_weights=False, debug=False, show=False):
 
     if spec1dfiles is None:
         #spec1dfiles = np.genfromtxt(spec1dlist,dtype='str')
@@ -219,7 +233,7 @@ def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=N
     wave_stack, flux_stack, ivar_stack, mask_stack = coadd1d.combspec(waves, fluxes, ivars, masks, sn_smooth_npix,
              wave_method=wave_method, scale_method=scale_method, const_weights=const_weights,ref_percentile=ref_percentile,
              wave_grid_min=wave_grid_min, wave_grid_max=wave_grid_max, dwave=dwave, dv=dv, dloglam=dloglam, samp_fact=samp_fact,
-             hand_scale=hand_scale, debug=debug, show=show, debug_scale=debug, show_scale=show)
+             hand_scale=hand_scale, ivar_weights=ivar_weights, debug=debug, show=show, debug_scale=debug, show_scale=show)
 
     if outroot is None:
         outroot = fileroot.copy()
@@ -234,8 +248,8 @@ def stack_multinight(sci_path,fileroot, outroot=None, spec1dfiles=None, objids=N
 
 def merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path='./',stack_region = [10150.0,10200.0],
                   wave_method = 'log10', dwave=None, dv=None, dloglam=None, samp_fact=1.0, wave_grid_min=None,
-                  wave_grid_max=None, const_weights=True, sn_smooth_npix=None, ref_percentile=20.0,
-                  maxiter_scale=5, sigrej_scale=3, scale_method='none', hand_scale=None, sn_max_medscale=2.0,
+                  wave_grid_max=None, const_weights=True, sn_smooth_npix=None, ref_percentile=70.0,
+                  maxiter_scale=5, sigrej_scale=3, scale_method='median', hand_scale=None, sn_max_medscale=2.0,
                   sn_min_medscale=0.5, sn_clip=30.0, lower=3.0, upper=3.0, maxrej=None, maxiter_reject=5,
                   qafile=None, title='', debug=False, show=True):
 
