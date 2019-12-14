@@ -19,6 +19,16 @@ outroot = 'J1342+0928_GNIRS_GD71_NewGrid'
 #          outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=8,
 #          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
+## Flux J1120+0641
+sci_path = '/Users/feige/Dropbox/OBS_DATA/GNIRS/J1120+0641/Stack_GD71_NewGrid'
+tell_method = 'qso'
+fileroot = 'J1120+0641'
+z_qso = 7.08
+outroot = 'J1120+0641_GNIRS_GD71_NewGrid'
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+          outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=6,
+          do_sens=True, do_flux=False, do_stack=False, do_tell=False, disp=False, debug=False)
+
 ## Flux J2232+2930
 sci_path = '/Users/feige/Dropbox/OBS_DATA/GNIRS/J2232+2930/Stack_GD71_NewGrid'
 tell_method = 'qso'
@@ -35,9 +45,9 @@ tell_method = 'qso'
 fileroot = 'PSOJ006_GNIRS'
 z_qso = 6.62
 outroot = 'J0024+3913_GNIRS_GD71_NewGrid'
-flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-          outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=8,
-          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
+#          outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=8,
+#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 
 #######################################################################################
