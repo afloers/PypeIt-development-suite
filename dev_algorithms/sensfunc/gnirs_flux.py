@@ -27,7 +27,7 @@ z_qso = 7.08
 outroot = 'J1120+0641_GNIRS_GD71_NewGrid'
 flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
           outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=6,
-          do_sens=True, do_flux=False, do_stack=False, do_tell=False, disp=False, debug=False)
+          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ## Flux J2232+2930
 sci_path = '/Users/feige/Dropbox/OBS_DATA/GNIRS/J2232+2930/Stack_GD71_NewGrid'
