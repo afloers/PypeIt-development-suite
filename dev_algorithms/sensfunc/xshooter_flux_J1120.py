@@ -1,4 +1,4 @@
-from dev_flux_tell import flux_tell
+from flux_coadd_tell import flux_tell
 
 ### sensfunction for VIS arm
 instrument = 'XSHOOTER_VIS'
@@ -169,7 +169,7 @@ stdfiles = ['spec1d_XSHOO.2018-10-08T23:48:26.908-LTT7987_XShooter_NIR_2018Oct08
 #              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ## J1120+0641
-sci_path = '/d2/Feige/Dropbox/OBS_DATA/XSHOOTER/J1120+0641/NIR/Science'
+sci_path = '/d2/Feige/Dropbox/OBS_DATA/XSHOOTER/J1120+0641/reduced/J1120+0641/NIR/Science'
 stdfiles = ['spec1d_XSHOO.2013-01-24T00:29:21.509-LTT3218_XShooter_NIR_2013Jan24T002921.509.fits',
             'spec1d_XSHOO.2014-02-19T02:16:45.565-LTT3218_XShooter_NIR_2014Feb19T021645.565.fits']
             ## BAD 'spec1d_XSHOO.2014-02-09T00:26:12.470-GD71_XShooter_NIR_2014Feb09T002612.470.fits',
