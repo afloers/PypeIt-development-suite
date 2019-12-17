@@ -53,7 +53,8 @@ spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms
 ### sensfunction for MOSFIRE
 instrument = 'FLAMINGOS2'
 std_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/SENSFUNC')
-stdfile = 'spec1d_S20191118S0196-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
+#stdfile = 'spec1d_S20191118S0196-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
+stdfile = 'spec1d_S20191118S0197-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/J0313-1806')
 
 outroot = 'J0313-1806_FLAMINGOS'
@@ -84,23 +85,46 @@ spec1dfiles = ['spec1d_S20191121S0208-J0313-1806_FLAMINGOS_2019Nov21T071307.500.
                'spec1d_S20191211S0306-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
                'spec1d_S20191211S0307-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
                'spec1d_S20191211S0310-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
-               'spec1d_S20191211S0311-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits']
+               'spec1d_S20191211S0311-J0313-1806_FLAMINGOS_2019Dec11T044652.500.fits',
+               'spec1d_S20191214S0181-J0313-1806_FLAMINGOS_2019Dec14T022615.000.fits',
+               'spec1d_S20191214S0182-J0313-1806_FLAMINGOS_2019Dec14T022615.000.fits',
+               'spec1d_S20191214S0185-J0313-1806_FLAMINGOS_2019Dec14T022615.000.fits',
+               'spec1d_S20191214S0186-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0189-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0190-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0193-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0194-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0197-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0198-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0201-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0202-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0205-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0206-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0209-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0210-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0213-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits',
+               'spec1d_S20191214S0214-J0313-1806_FLAMINGOS_2019Dec14T044652.500.fits']
 objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01',
           'SPAT1088-SLIT0000-DET01','SPAT0978-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
           'SPAT0978-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
-          'SPAT0977-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01']
-#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
-#          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=8,
-#          wave_grid_min=13640., wave_grid_max=25200.,
-#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+          'SPAT0977-SLIT0000-DET01','SPAT1088-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1088-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
+          'SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
+          'SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
+          'SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01']
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
+          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=6,
+          wave_grid_min=13640., wave_grid_max=25200.,
+          do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ### Stack spectra obtained from FIRE and NIRES
 outroot = 'J0313-1806_FIRE_NIRES_FL2'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/J0313/FIRE_NIRES_FL2')
 spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms_tellcorr_scale.fits',
                'J0313-1806_FLAMINGOS_tellcorr_scale.fits']
-stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
-                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
+#stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
+#                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
