@@ -20,7 +20,6 @@ outroot = 'J0313-1806_NIRES'
 #          tell_method=tell_method, outroot=outroot,
 #          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
-
 outroot = 'J0313-1806_NIRES_dv50kms'
 #flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
 #          tell_method=tell_method, outroot=outroot, dv=50.,
