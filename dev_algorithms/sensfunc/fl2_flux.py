@@ -33,7 +33,7 @@ objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000
 #flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
 #          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=8,
 #          wave_grid_min=13640., wave_grid_max=25200.,
-#          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
+#          do_sens=False, do_flux=True, do_stack=True, do_tell=False, disp=False, debug=False)
 
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/ut191211/Science')
 outroot = 'J0313-1806_FLAMINGOS_ut191211'
