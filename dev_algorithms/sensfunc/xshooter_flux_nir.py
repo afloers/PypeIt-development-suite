@@ -3,6 +3,23 @@ from flux_coadd_tell import flux_tell, stack_multinight, merge_vis_nir
 ### sensfunction for NIR arm
 instrument = 'XSHOOTER_NIR'
 
+## Good STD
+stdfile = 'spec1d_XSHOO.2019-08-04T23:19:17.990-EG274_XShooter_NIR_2019Aug04T231917.990.fits'
+stdfile = 'spec1d_XSHOO.2017-12-17T08:16:53.582-LTT3218_XShooter_NIR_2017Dec17T081653.582.fits'
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+# bad stdfiles = 'spec1d_XSHOO.2011-08-20T23:33:01.643-LTT7987_XShooter_NIR_2011Aug20T233301.643.fits'
+# zeros in K stdfile = 'spec1d_XSHOO.2011-08-20T23:33:01.643-LTT7987_XShooter_NIR_2011Aug20T233301.643.fits'
+# zeros in K stdfile = 'spec1d_XSHOO.2015-10-24T23:39:57.538-LTT7987_XShooter_NIR_2015Oct24T233957.538.fits'
+# zeros in K stdfile = 'spec1d_XSHOO.2017-10-25T23:32:05.543-LTT7987_XShooter_NIR_2017Oct25T233205.543.fits'
+# super big value in the bluest edge stdfile = 'spec1d_XSHOO.2018-10-08T23:48:26.908-LTT7987_XShooter_NIR_2018Oct08T234826.908.fits'
+# super big value in the bluest edge stdfile = 'spec1d_XSHOO.2018-10-13T23:56:03.420-LTT7987_XShooter_NIR_2018Oct13T235603.420.fits'
+# zeros in K stdfile = 'spec1d_XSHOO.2018-10-14T23:26:23.121-LTT7987_XShooter_NIR_2018Oct14T232623.121.fits'
+# bad K stdfile = 'spec1d_XSHOO.2018-10-14T23:32:13.290-LTT7987_XShooter_NIR_2018Oct14T233213.290.fits'
+# bad K stdfile = 'spec1d_XSHOO.2018-10-28T23:53:20.384-LTT7987_XShooter_NIR_2018Oct28T235320.384.fits'
+# super big value in the bluest edge stdfile = 'spec1d_XSHOO.2018-11-08T00:16:56.583-Feige110_XShooter_NIR_2018Nov08T001656.583.fits'
+# bad K stdfile = 'spec1d_XSHOO.2018-11-12T00:10:30.590-LTT7987_XShooter_NIR_2018Nov12T001030.590.fits'
+# bad K stdfile = 'spec1d_XSHOO.2019-06-08T23:19:30.578-LTT3218_XShooter_NIR_2019Jun08T231930.578.fits'
+
 ## J0020-3653
 qsoname = 'J0020-3653'
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
@@ -28,8 +45,24 @@ spec1dvis = 'J0100+2802_XSHOOTER_VIS.fits'
 spec1dnir = 'J0100+2802_XSHOOTER_NIR.fits'
 outfile = qsoname+'_XShooter.fits'
 stack_region = [10100.0,10280.0]
-merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
-              scale_method='median')
+#merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
+#              scale_method='median')
+
+
+## J0109-3047
+qsoname = 'J0109-3047'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/SENSFUNC_NIR'
+## Good STD
+stdfile = 'spec1d_XSHOO.2019-08-04T23:19:17.990-EG274_XShooter_NIR_2019Aug04T231917.990.fits'
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+z_qso = 6.75
+tell_method = 'qso'
+fileroot = 'J0109-3047_XShooter_NIR'
+outroot = 'J0109-3047_XShooter_NIR'
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method, outroot=outroot,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=False, disp=False, debug=True)
 
 # J0224-4711
 qsoname = 'J0224-4711'
@@ -69,7 +102,7 @@ fileroots = ['J0226+0302_XShooter_NIR_2017Dec','J0226+0302_XShooter_NIR_2018Jan'
 stdfile = 'spec1d_XSHOO.2017-12-17T08:16:53.582-LTT3218_XShooter_NIR_2017Dec17T081653.582.fits'
 fileroot = 'J0226+0302_XShooter_NIR'
 #flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=False, debug=False)
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=False, disp=False, debug=True)
 
 
 ## J0252-0503
@@ -99,6 +132,19 @@ outfile = qsoname+'_XShooter.fits'
 stack_region = [10100.0,10280.0]
 #merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path=sci_path, stack_region=stack_region,
 #              scale_method='median')
+
+## J1048-0109
+qsoname = 'J1048-0109'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/SENSFUNC_NIR'
+z_qso = 6.66
+tell_method = 'qso'
+fileroot = 'J1048m0109_XShooter_NIR'
+outroot = 'J1048-0109_XShooter_NIR'
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method, outroot=outroot,
+#          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=False)
 
 
 ## J1110-1329
@@ -172,6 +218,18 @@ outroot = 'J1629+2407_XShooter_NIR_ALL'
 #stack_multinight(sci_path, 'PSOJ247p24_XShooter_NIR', outroot=outroot, spec1dfiles=None, objids=None, wave_method='log10', ex_value='OPT',
 #                 sn_smooth_npix=None, debug=True, show=True)
 
+## J2132+1217
+qsoname = 'J2132+1217'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/SENSFUNC_NIR'
+z_qso = 6.58
+tell_method = 'qso'
+fileroot = 'J323p12_XShooter_NIR'
+outroot = 'J2132+1217_XShooter_NIR'
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method, outroot=outroot,
+#          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ## J2211-3206
 qsoname = 'J2211-3206'
@@ -200,17 +258,31 @@ fileroots = ['J2211-6320_XShooter_NIR_2019Jun','J2211-6320_XShooter_NIR_2019Aug'
 #    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
 #              do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
+## J2232+2930
+qsoname = 'J2232+2930'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/SENSFUNC_NIR'
+z_qso = 6.66
+tell_method = 'qso'
+fileroot = 'J338p29_XShooter_NIR'
+outroot = 'J2232+2930_XShooter_NIR'
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+#          tell_method=tell_method, outroot=outroot,
+#          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+
+
 ## J2348-3054
 qsoname = 'J2348-3054'
 sci_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/{:}/reduced/{:}/NIR/Science'.format(qsoname,qsoname)
-stdfiles = ['spec1d_XSHOO.2011-08-20T23:33:01.643-LTT7987_XShooter_NIR_2011Aug20T233301.643.fits']
+stdfile = 'spec1d_XSHOO.2017-11-23T08:25:54.754-LTT3218_XShooter_NIR_2017Nov23T082554.754.fits'
+std_path = '/Users/feige/Dropbox/OBS_DATA/XSHOOTER/SENSFUNC_NIR'
 z_qso = 6.90
 tell_method = 'qso'
-fileroots = ['J2348-3054_XShooter_NIR_2011']
-#for ii in range(len(fileroots)):
-#    fileroot = fileroots[ii]
-#    stdfile = stdfiles[ii]
-#    flux_tell(sci_path, stdfile, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
-#              do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+fileroot = 'J2348-3054_XShooter_NIR_2011'
+outroot = 'J2348-3054_XShooter_NIR'
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+          tell_method=tell_method, outroot=outroot,
+          do_sens=False, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 
