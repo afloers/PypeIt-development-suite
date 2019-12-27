@@ -12,15 +12,13 @@ stdfile = 'spec1d_cN20161014S0481-GD71_GNIRS_2016Oct14T152107.457.fits'
 star_ra='05:52:27.61'
 star_dec='+15:53:13.8'
 
-sci_path = '/Users/feige/Dropbox/OBS_DATA/GNIRS/BlueHawaii/Stack_GD71_NewGrid_Good'
+sci_path = '/Users/feige/Dropbox/OBS_DATA/GNIRS/BlueHawaii/Stack_GD71_NewGrid'
 tell_method = 'qso'
 fileroot = 'Blue_Hawaii_GNIRS'
-outroot = 'J1007+2115_GNIRS_GD71_NewGrid'
-outroot = 'J1007+2115_GNIRS_GD71_NewGrid'
+outroot = 'J1007+2115_GNIRS_GD71_NewGrid_Final'
 flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso, tell_method=tell_method,
           outroot=outroot, star_ra=star_ra, star_dec=star_dec, sens_polyorder=8,
-          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
-
+          do_sens=False, do_flux=False, do_stack=True, do_tell=True, disp=True, debug=False)
 aaaa
 
 ### Stack spectra obtained from GNIRS and NIRES

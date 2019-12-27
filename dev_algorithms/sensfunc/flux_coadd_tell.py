@@ -8,8 +8,9 @@ from pypeit.core.flux_calib import apply_sensfunc
 from pypeit.core import coadd1d
 from pypeit import msgs
 
-basedir = os.getenv('HOME')
+#basedir = os.getenv('HOME')
 #basedir = '/d2/Feige'
+basedir = '/Volumes/WORK'
 
 def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_mag=None,star_ra=None,
                        star_dec=None, sens_polyorder=8, mask_abs_lines=True, disp=True, debug=False):
@@ -248,7 +249,7 @@ def stack_multinight(sci_path,fileroot=None, outroot=None, spec1dfiles=None, obj
 
 def merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path='./',stack_region = [10150.0,10200.0],
                   wave_method = 'log10', dwave=None, dv=None, dloglam=None, samp_fact=1.0, wave_grid_min=None,
-                  wave_grid_max=None, const_weights=True, sn_smooth_npix=None, ref_percentile=70.0,
+                  wave_grid_max=None, const_weights=False, ivar_weights=True, sn_smooth_npix=None, ref_percentile=70.0,
                   maxiter_scale=5, sigrej_scale=3, scale_method='median', hand_scale=None, sn_max_medscale=2.0,
                   sn_min_medscale=0.5, sn_clip=30.0, lower=3.0, upper=3.0, maxrej=None, maxiter_reject=5,
                   qafile=None, title='', debug=False, show=True):
@@ -293,7 +294,8 @@ def merge_vis_nir(outfile, spec1dvis, spec1dnir, sci_path='./',stack_region = [1
                                         wave_grid_max=wave_grid_max,dwave=dwave, dv=dv, dloglam=dloglam, samp_fact=samp_fact)
 
     # Evaluate the sn_weights. This is done once at the beginning
-    rms_sn, weights = coadd1d.sn_weights(waves, fluxes, ivars, masks, sn_smooth_npix, const_weights=const_weights, verbose=True)
+    rms_sn, weights = coadd1d.sn_weights(waves, fluxes, ivars, masks, sn_smooth_npix, const_weights=const_weights,
+                                         ivar_weights=ivar_weights, verbose=True)
 
     fluxes_scale, ivars_scale, scales, scale_method_used = coadd1d.scale_spec_stack(
             wave_grid, waves, fluxes, ivars, masks, rms_sn, weights, ref_percentile=ref_percentile, maxiter_scale=maxiter_scale,
