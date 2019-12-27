@@ -53,7 +53,8 @@ spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms
 instrument = 'FLAMINGOS2'
 std_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/SENSFUNC')
 #stdfile = 'spec1d_S20191118S0196-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
-stdfile = 'spec1d_S20191118S0197-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
+#stdfile = 'spec1d_S20191118S0197-HD27476_FLAMINGOS_2019Nov18T044652.500.fits'
+stdfile = 'spec1d_S20191217S0483-LTT3218_FLAMINGOS_2019Dec17T071307.500.fits'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/FLAMINGOS/J0313-1806')
 
 outroot = 'J0313-1806_FLAMINGOS'
@@ -115,10 +116,10 @@ objids = ['SPAT0978-SLIT0000-DET01','SPAT1089-SLIT0000-DET01','SPAT0978-SLIT0000
           'SPAT0977-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
           'SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01',
           'SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01','SPAT0976-SLIT0000-DET01', 'SPAT1087-SLIT0000-DET01']
-flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
-          outroot=outroot, z_qso=z_qso, tell_method=tell_method, star_type='A0V', star_mag=8.73,sens_polyorder=6,
-          wave_grid_min=13640., wave_grid_max=25200.,
-          do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
+#flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, spec1dfiles=spec1dfiles, objids=objids,
+#          outroot=outroot, z_qso=z_qso, tell_method=tell_method, sens_polyorder=8,
+#          wave_grid_min=13640., wave_grid_max=25000., #star_type='A0V', star_mag=8.73,
+#          do_sens=True, do_flux=True, do_stack=True, do_tell=True, disp=False, debug=False)
 
 ### Stack spectra obtained from FIRE and NIRES
 outroot = 'J0313-1806_FIRE_NIRES_FL2'
