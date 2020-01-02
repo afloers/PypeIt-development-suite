@@ -3,8 +3,8 @@ from flux_coadd_tell import flux_tell, stack_multinight
 
 
 #basedir = '/d2/Feige/'
-#basedir = os.getenv('HOME')
-basedir = '/Volumes/WORK'
+basedir = os.getenv('HOME')
+#basedir = '/Volumes/WORK'
 
 tell_method = 'qso'
 z_qso = 7.62
@@ -15,11 +15,11 @@ instrument = 'GNIRS'
 std_path = os.path.join(basedir,'Dropbox/OBS_DATA/GNIRS/SENSFUNC')
 stdfile = 'spec1d_N20200102S0074-GD71_GNIRS_2019Dec31T224213.756.fits'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/GNIRS/ut200102/Science')
-fileroot = 'J0313-1806_GNIRS'
+fileroot = 'Moutai_GNIRS'
 outroot = 'J0313-1806_GNIRS'
 flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
           tell_method=tell_method, outroot=outroot,
-          do_sens=True, do_flux=True, do_stack=False, do_tell=False, disp=False, debug=False)
+          do_sens=False, do_flux=False, do_stack=False, do_tell=True, disp=True, debug=True)
 
 
 ### J0313-1806 NIRES data
