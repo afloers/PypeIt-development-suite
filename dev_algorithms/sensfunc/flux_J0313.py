@@ -9,6 +9,19 @@ basedir = os.getenv('HOME')
 tell_method = 'qso'
 z_qso = 7.62
 
+
+### J0313-1806 GNIRS data
+instrument = 'GNIRS'
+std_path = os.path.join(basedir,'Dropbox/OBS_DATA/GNIRS/SENSFUNC')
+stdfile = 'spec1d_N20200102S0074-GD71_GNIRS_2019Dec31T224213.756.fits'
+sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/GNIRS/ut200102/Science')
+fileroot = 'J0313-1806_GNIRS'
+outroot = 'J0313-1806_GNIRS'
+flux_tell(sci_path, stdfile, std_path=std_path, instrument=instrument, fileroot=fileroot, z_qso=z_qso,
+          tell_method=tell_method, outroot=outroot,
+          do_sens=True, do_flux=False, do_stack=False, do_tell=False, disp=True, debug=True)
+
+
 ### J0313-1806 NIRES data
 instrument = 'NIRES'
 std_path = os.path.join(basedir,'Dropbox/OBS_DATA/NIRES/SENSFUNC')
@@ -126,5 +139,5 @@ outroot = 'J0313-1806_FIRE_NIRES_FL2'
 sci_path = os.path.join(basedir,'Dropbox/OBS_DATA/J0313/FIRE_NIRES_FL2')
 spec1dfiles = ['J0313-1806_FIRE_dv50kms_tellcorr.fits','J0313-1806_NIRES_dv50kms_tellcorr_scale.fits',
                'J0313-1806_FLAMINGOS_tellcorr_scale.fits']
-stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
-                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
+#stack_multinight(sci_path, outroot=outroot, spec1dfiles=spec1dfiles, objids=None, wave_method='log10', dv=100.0,
+#                 ex_value='OPT', scale_method='poly', ivar_weights=True, sn_smooth_npix=None, debug=True, show=True)
