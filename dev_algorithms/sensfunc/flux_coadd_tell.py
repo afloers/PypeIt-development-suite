@@ -22,9 +22,6 @@ def get_sens_from_file(std1dfile=None, instrument='GNIRS', star_type=None, star_
     else:
         sensfile = std1dfile.replace('.fits','.sens.fits')
 
-    # get the pca pickle file and atmosphere model grid
-    pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
-
     if (instrument=='GNIRS') or (instrument=='NIRES'):
         telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000_fixed_big.fits')
         #telgridfile = os.path.join(basedir, 'Dropbox/PypeIt_Redux/TelFit_MaunaKea_3100_26100_R20000.fits')
@@ -59,7 +56,10 @@ def apply_tell_from_file(z_obj, stackfilename, tell_method='qso', instrument='NI
         outfile = stackfilename.replace('.fits','_tellcorr.fits')
 
     if tell_method=='qso':
-        pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+        if z_obj>5:
+            pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_1200_3100.pckl')
+        else:
+            pca_file = os.path.join(basedir, 'Dropbox/PypeIt_Redux/qso_pca_2200_5100.pckl')
         # run telluric.qso_telluric to get the final results
         # TODO: add other modes here
         TelQSO = telluric.qso_telluric(stackfilename, telgridfile, pca_file, z_obj, telloutfile, outfile,
