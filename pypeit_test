@@ -44,7 +44,7 @@ def develop_setups():
             'not_alfosc': ['grism4'],
             'vlt_fors2': ['300I'],
             'lbt_luci': ['LUCI-I', 'LUCI-II'],
-            'mmt_binospec': ['Longslit_G600'],
+            'mmt_binospec': ['Longslit_G600','Multislit_G270'],
             'mmt_mmirs': ['HK_zJ', 'J_zJ', 'K3000_Kspec'],
             }
 
